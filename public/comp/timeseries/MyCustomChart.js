@@ -52,9 +52,9 @@ export default class MyCustomChart {
 
         let x = d3.scaleLinear()
             .domain([d3.min(data, function (d) {
-                return d.date - 1;
+                return d.date;
             }), d3.max(data, function (d) {
-                return d.date + 1;
+                return d.date;
             })])
             .range([margin.left, width - margin.right]).nice();
 

@@ -7,6 +7,8 @@ import { Link } from 'react-router'
 import { NMLM as NMLM1, NMSM as NMSM1, NOMC as NOMC1, NOMD as NOMD1, NOMF as NOMF1, NOMI as NOMI1, SOLH as SOLH1, SOLL as SOLL1, TAGB as TAGB1 } from './m/combine20042016'
 import { NMLM as NMLM2, NMSM as NMSM2, NOMC as NOMC2, NOMD as NOMD2, NOMF as NOMF2, NOMI as NOMI2, SOLH as SOLH2, SOLL as SOLL2, TAGB as TAGB2 } from './m/combine20142017'
 import { NMLM as NMLM3, NMSM as NMSM3, NOMC as NOMC3, NOMD as NOMD3, NOMF as NOMF3, NOMI as NOMI3, SOLH as SOLH3, SOLL as SOLL3, TAGB as TAGB3 } from './m/combine20152017'
+import { PSUR_1MONTH_BEFORE } from './m/PSUR-1MONTH_BEFORE'
+import { PSUR_10DAYS_BEFORE } from './m/PSUR-10DAYS_BEFORE'
 
 //ui
 import { Button } from 'semantic-ui-react'
@@ -53,6 +55,9 @@ class TestDashboard extends Component {
             case 'SOLL3': this.setState({data: SOLL3}); break;
             case 'TAGB3': this.setState({data: TAGB3}); break;
 
+            case 'PSUR_1MONTH_BEFORE' : this.setState({data: PSUR_1MONTH_BEFORE}); break;
+            case 'PSUR_10DAYS_BEFORE' : this.setState({data: PSUR_10DAYS_BEFORE}); break;
+
         }
     }
 
@@ -92,6 +97,10 @@ class TestDashboard extends Component {
                 <Button onClick={this.changeData} value='SOLH3'>SOLH</Button><br/>
                 <Button onClick={this.changeData} value='SOLL3'>SOLL</Button><br/>
                 <Button onClick={this.changeData} value='TAGB3'>TAGB</Button><br/>
+
+                <div>PSUR DATA</div><br />
+                <Button onClick={this.changeData} value='PSUR_1MONTH_BEFORE'>PSUR_1MONTH_BEFORE</Button><br/>
+                <Button onClick={this.changeData} value='PSUR_10DAYS_BEFORE'>PSUR_10DAYS_BEFORE</Button><br/>
 
                 <Link to='/logsheet'>Log Sheet</Link>
                 <Drawer 
