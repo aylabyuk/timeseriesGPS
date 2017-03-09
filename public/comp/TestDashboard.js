@@ -103,7 +103,7 @@ class TestDashboard extends Component {
 
                 <Link to='/logsheet'>Log Sheet</Link>
                 <Drawer 
-                    width={1500} 
+                    width={1250} 
                     openSecondary={true} 
                     open={true} 
                     style={{ backgroundColor: "slategray"}}>

@@ -50,11 +50,13 @@ export default class MyCustomChart {
         })
         mean = math.mean(focusData)
 
+        let xallowance = (d3.max(data, function (d) { return d.date;}) - d3.min(data, function (d) {return d.date;})) * .03
+
         let x = d3.scaleLinear()
             .domain([d3.min(data, function (d) {
-                return d.date;
+                return d.date - xallowance;
             }), d3.max(data, function (d) {
-                return d.date;
+                return d.date + xallowance;
             })])
             .range([margin.left, width - margin.right]).nice();
 
@@ -107,14 +109,14 @@ export default class MyCustomChart {
             .data(data)
             .enter().append("circle")
             .classed(styles.dot, true)
-            .attr("r", 3)
+            .attr("r", 4)
             .attr("cx", function (d) {
                 return x(d.date);
             })
             .attr("cy", function (d) {
                 return y(d.yVal - mean);
             })
-            .style("opacity", 0.2)
+            .style("opacity", 1)
             .attr("fill", "white")
             .attr("stroke-width", 2)
             .attr("stroke", "blue");
@@ -139,7 +141,7 @@ export default class MyCustomChart {
             svg.select(".dots")
                 .attr("transform", d3.event.transform);
             svg.selectAll(".dots circle").attr("r", function () {
-                return (3 / d3.event.transform.k);
+                return (4 / d3.event.transform.k);
             }).attr("stroke-width", function () {
                 return (2 / d3.event.transform.k);
             });
