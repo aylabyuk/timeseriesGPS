@@ -18,45 +18,44 @@ import FlatButton from 'material-ui/FlatButton';
 class TestDashboard extends Component {
     state = { 
         open: false,
-        data: NMLM1
+        data: NMLM1,
+        sitename: 'NMLM'
     }
 
     toggleDrawer = () => this.setState({ open: !this.state.open })
 
     changeData = (e) => { 
         switch (e.target.value) {
-            case 'NMLM1': this.setState({data: NMLM1}); break;
-            case 'NMSM1': this.setState({data: NMSM1}); break;
-            case 'NOMC1': this.setState({data: NOMC1}); break;
-            case 'NOMD1': this.setState({data: NOMD1}); break;
-            case 'NOMF1': this.setState({data: NOMF1}); break;
-            case 'NOMI1': this.setState({data: NOMI1}); break;
-            case 'SOLH1': this.setState({data: SOLH1}); break;
-            case 'SOLL1': this.setState({data: SOLL1}); break;
-            case 'TAGB1': this.setState({data: TAGB1}); break;
+            case 'NMLM1': this.setState({data: NMLM1, sitename: "NMLM 2004-2016"}); break;
+            case 'NMSM1': this.setState({data: NMSM1, sitename: "NMSM 2004-2016"}); break;
+            case 'NOMC1': this.setState({data: NOMC1, sitename: "NOMC 2004-2016"}); break;
+            case 'NOMD1': this.setState({data: NOMD1, sitename: "NOMD 2004-2016"}); break;
+            case 'NOMF1': this.setState({data: NOMF1, sitename: "NOMF 2004-2016"}); break;
+            case 'NOMI1': this.setState({data: NOMI1, sitename: "NOMI 2004-2016"}); break;
+            case 'SOLH1': this.setState({data: SOLH1, sitename: "SOLH 2004-2016"}); break;
+            case 'SOLL1': this.setState({data: SOLL1, sitename: "SOLL 2004-2016"}); break;
+            case 'TAGB1': this.setState({data: TAGB1, sitename: "TAGB 2004-2016"}); break;
+            case 'NMLM2': this.setState({data: NMLM2, sitename: "NMLM 2004-2017"}); break;
+            case 'NMSM2': this.setState({data: NMSM2, sitename: "NMSM 2004-2017"}); break;
+            case 'NOMC2': this.setState({data: NOMC2, sitename: "NOMC 2004-2017"}); break;
+            case 'NOMD2': this.setState({data: NOMD2, sitename: "NOMD 2004-2017"}); break;
+            case 'NOMF2': this.setState({data: NOMF2, sitename: "NOMF 2004-2017"}); break;
+            case 'NOMI2': this.setState({data: NOMI2, sitename: "NOMI 2004-2017"}); break;
+            case 'SOLH2': this.setState({data: SOLH2, sitename: "SOLH 2004-2017"}); break;
+            case 'SOLL2': this.setState({data: SOLL2, sitename: "SOLL 2004-2017"}); break;
+            case 'TAGB2': this.setState({data: TAGB2, sitename: "TAGB 2004-2017"}); break;
+            case 'NMLM3': this.setState({data: NMLM3, sitename: "NMLM 2015-2017"}); break;
+            case 'NMSM3': this.setState({data: NMSM3, sitename: "NMSM 2015-2017"}); break;
+            case 'NOMC3': this.setState({data: NOMC3, sitename: "NOMC 2015-2017"}); break;
+            case 'NOMD3': this.setState({data: NOMD3, sitename: "NOMD 2015-2017"}); break;
+            case 'NOMF3': this.setState({data: NOMF3, sitename: "NOMF 2015-2017"}); break;
+            case 'NOMI3': this.setState({data: NOMI3, sitename: "NOMI 2015-2017"}); break;
+            case 'SOLH3': this.setState({data: SOLH3, sitename: "SOLH 2015-2017"}); break;
+            case 'SOLL3': this.setState({data: SOLL3, sitename: "SOLL 2015-2017"}); break;
+            case 'TAGB3': this.setState({data: TAGB3, sitename: "TAGB 2015-2017"}); break;
 
-            case 'NMLM2': this.setState({data: NMLM2}); break;
-            case 'NMSM2': this.setState({data: NMSM2}); break;
-            case 'NOMC2': this.setState({data: NOMC2}); break;
-            case 'NOMD2': this.setState({data: NOMD2}); break;
-            case 'NOMF2': this.setState({data: NOMF2}); break;
-            case 'NOMI2': this.setState({data: NOMI2}); break;
-            case 'SOLH2': this.setState({data: SOLH2}); break;
-            case 'SOLL2': this.setState({data: SOLL2}); break;
-            case 'TAGB2': this.setState({data: TAGB2}); break;
-
-            case 'NMLM3': this.setState({data: NMLM3}); break;
-            case 'NMSM3': this.setState({data: NMSM3}); break;
-            case 'NOMC3': this.setState({data: NOMC3}); break;
-            case 'NOMD3': this.setState({data: NOMD3}); break;
-            case 'NOMF3': this.setState({data: NOMF3}); break;
-            case 'NOMI3': this.setState({data: NOMI3}); break;
-            case 'SOLH3': this.setState({data: SOLH3}); break;
-            case 'SOLL3': this.setState({data: SOLL3}); break;
-            case 'TAGB3': this.setState({data: TAGB3}); break;
-
-            case 'PSUR_1MONTH_BEFORE' : this.setState({data: PSUR_1MONTH_BEFORE}); break;
-            case 'PSUR_10DAYS_BEFORE' : this.setState({data: PSUR_10DAYS_BEFORE}); break;
+            case 'PSUR_1MONTH_BEFORE' : this.setState({data: PSUR_1MONTH_BEFORE, sitename: "PSUR detail-1 month before and 10 days after"}); break;
+            case 'PSUR_10DAYS_BEFORE' : this.setState({data: PSUR_10DAYS_BEFORE, sitename: "PSUR detail-10 days before and 10 days after"}); break;
 
         }
     }
@@ -106,9 +105,9 @@ class TestDashboard extends Component {
                 <Drawer 
                     width={1500} 
                     openSecondary={true} 
-                    open={this.state.open} 
+                    open={true} 
                     style={{ backgroundColor: "slategray"}}>
-                    <TimeSeriesContainer data={this.state.data}/>
+                    <TimeSeriesContainer data={this.state.data} sitename={this.state.sitename}/>
                 </Drawer>
             </div>
         );

@@ -9,9 +9,10 @@ import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 
 const style = {
-  margin: 10,
+  margin: 5,
   padding: 6,
-  width: 600
+  width: 1200,
+  height: 280,
 };
 
 class TimeSeries extends Component {
@@ -34,9 +35,10 @@ class TimeSeries extends Component {
 
         return (
             <Paper style={style}>
-                <h2>{name}</h2>
-                <div>velocity: {computed ? Math.round((computed.velocity[name][1] * 10) * 100) / 100  + ' mm/yr': 'calculating'}</div>
-                <div>error: +- {computed ? Math.round((computed.std_error[name][0] * 10) * 100) / 100 + ' mm' : 'calculating'}</div>
+                <p>{name} |
+                    velocity: {computed ? Math.round((computed.velocity[name][1] * 10) * 100) / 100  + ' mm/yr': 'calculating'} | 
+                    error: +- {computed ? Math.round((computed.std_error[name][0] * 10) * 100) / 100 + ' mm' : 'calculating'}
+                </p>
                 <FlatButton id='resetBtn' className={name} label='reset' primary={true} />
                 <Chart
                     id='chart'
