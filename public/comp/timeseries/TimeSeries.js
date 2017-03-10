@@ -11,8 +11,8 @@ import FlatButton from 'material-ui/FlatButton';
 const style = {
   margin: 5,
   padding: 6,
-  width: 1200,
-  height: 280,
+  width: 1300,
+  height: 260,
 };
 
 class TimeSeries extends Component {
@@ -35,18 +35,22 @@ class TimeSeries extends Component {
 
         return (
             <Paper style={style}>
-                <p>{name} |
+                <p style={{ margin: 0 }} >{name} |
                     velocity: {computed ? Math.round((computed.velocity[name][1] * 10) * 100) / 100  + ' mm/yr': 'calculating'} | 
                     error: +- {computed ? Math.round((computed.std_error[name][0] * 10) * 100) / 100 + ' mm' : 'calculating'}
                 </p>
-                <FlatButton id='resetBtn' className={name} label='reset' primary={true} />
-                <Chart
-                    id='chart'
-                    type={"custom"}
-                    customChart={MyCustomChart}
-                    data={dd}
-                    styles={styles}
-                />
+                {/*<FlatButton id='resetBtn' className={name} label='reset' primary={true} />*/}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: 2 }}>
+                    <p style={{ verticalAlign: 'text-top', transform: 'rotate(-90deg)', height: 20 }}>{name}(cm)</p>
+                    <Chart
+                        id='chart'
+                        type={"custom"}
+                        customChart={MyCustomChart}
+                        data={dd}
+                        styles={styles}
+                    />
+                </div>
+                <p>year</p>
             </Paper>
         );
     }

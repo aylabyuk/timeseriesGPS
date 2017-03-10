@@ -1,28 +1,45 @@
 import React, {Component} from 'react';
-import TimeSeriesContainer from './timeseries/TimeSeriesContainer'
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import TimeSeriesContainer from './timeseries/TimeSeriesContainer';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 //test datas
-import { NMLM as NMLM1, NMSM as NMSM1, NOMC as NOMC1, NOMD as NOMD1, NOMF as NOMF1, NOMI as NOMI1, SOLH as SOLH1, SOLL as SOLL1, TAGB as TAGB1 } from './m/combine20042016'
-import { NMLM as NMLM2, NMSM as NMSM2, NOMC as NOMC2, NOMD as NOMD2, NOMF as NOMF2, NOMI as NOMI2, SOLH as SOLH2, SOLL as SOLL2, TAGB as TAGB2 } from './m/combine20142017'
-import { NMLM as NMLM3, NMSM as NMSM3, NOMC as NOMC3, NOMD as NOMD3, NOMF as NOMF3, NOMI as NOMI3, SOLH as SOLH3, SOLL as SOLL3, TAGB as TAGB3 } from './m/combine20152017'
-import { PSUR_1MONTH_BEFORE } from './m/PSUR-1MONTH_BEFORE'
-import { PSUR_10DAYS_BEFORE } from './m/PSUR-10DAYS_BEFORE'
+import { NMLM as NMLM1, NMSM as NMSM1, NOMC as NOMC1, NOMD as NOMD1, NOMF as NOMF1, NOMI as NOMI1, SOLH as SOLH1, SOLL as SOLL1, TAGB as TAGB1 } from './m/combine20042016';
+import { NMLM as NMLM2, NMSM as NMSM2, NOMC as NOMC2, NOMD as NOMD2, NOMF as NOMF2, NOMI as NOMI2, SOLH as SOLH2, SOLL as SOLL2, TAGB as TAGB2 } from './m/combine20142017';
+import { NMLM as NMLM3, NMSM as NMSM3, NOMC as NOMC3, NOMD as NOMD3, NOMF as NOMF3, NOMI as NOMI3, SOLH as SOLH3, SOLL as SOLL3, TAGB as TAGB3 } from './m/combine20152017';
+import { PSUR_1MONTH_BEFORE } from './m/PSUR-1MONTH_BEFORE';
+import { PSUR_10DAYS_BEFORE } from './m/PSUR-10DAYS_BEFORE';
 
 //ui
-import { Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 
+import { html2canvas } from 'html2canvas'
+
 class TestDashboard extends Component {
     state = { 
-        open: false,
+        open: true,
         data: NMLM1,
         sitename: 'NMLM'
     }
 
     toggleDrawer = () => this.setState({ open: !this.state.open })
+
+    handleSaveImage = () => {
+        html2canvas($("#timeseriescontainer"), {
+            onrendered: function(canvas) {
+                theCanvas = canvas;
+                document.body.appendChild(canvas);
+
+                // Convert and download as image 
+                Canvas2Image.saveAsPNG(canvas); 
+                $("#img-out").append(canvas);
+                // Clean up 
+                //document.body.removeChild(canvas);
+            }
+        });
+    }
 
     changeData = (e) => { 
         switch (e.target.value) {
@@ -35,6 +52,7 @@ class TestDashboard extends Component {
             case 'SOLH1': this.setState({data: SOLH1, sitename: "SOLH 2004-2016"}); break;
             case 'SOLL1': this.setState({data: SOLL1, sitename: "SOLL 2004-2016"}); break;
             case 'TAGB1': this.setState({data: TAGB1, sitename: "TAGB 2004-2016"}); break;
+
             case 'NMLM2': this.setState({data: NMLM2, sitename: "NMLM 2004-2017"}); break;
             case 'NMSM2': this.setState({data: NMSM2, sitename: "NMSM 2004-2017"}); break;
             case 'NOMC2': this.setState({data: NOMC2, sitename: "NOMC 2004-2017"}); break;
@@ -44,6 +62,7 @@ class TestDashboard extends Component {
             case 'SOLH2': this.setState({data: SOLH2, sitename: "SOLH 2004-2017"}); break;
             case 'SOLL2': this.setState({data: SOLL2, sitename: "SOLL 2004-2017"}); break;
             case 'TAGB2': this.setState({data: TAGB2, sitename: "TAGB 2004-2017"}); break;
+
             case 'NMLM3': this.setState({data: NMLM3, sitename: "NMLM 2015-2017"}); break;
             case 'NMSM3': this.setState({data: NMSM3, sitename: "NMSM 2015-2017"}); break;
             case 'NOMC3': this.setState({data: NOMC3, sitename: "NOMC 2015-2017"}); break;
@@ -101,13 +120,16 @@ class TestDashboard extends Component {
                 <Button onClick={this.changeData} value='PSUR_1MONTH_BEFORE'>PSUR_1MONTH_BEFORE</Button><br/>
                 <Button onClick={this.changeData} value='PSUR_10DAYS_BEFORE'>PSUR_10DAYS_BEFORE</Button><br/>
 
-                <Link to='/logsheet'>Log Sheet</Link>
+                <br/>
+                <Button onClick={this.handleSaveImage} >SAVE</Button>
+
+                {/*<Link to='/logsheet'>Log Sheet</Link>*/}
                 <Drawer 
-                    width={1250} 
+                    width={1308} 
                     openSecondary={true} 
                     open={true} 
                     style={{ backgroundColor: "slategray"}}>
-                    <TimeSeriesContainer data={this.state.data} sitename={this.state.sitename}/>
+                    <TimeSeriesContainer ref='timeseriescontainer' data={this.state.data} sitename={this.state.sitename}/>
                 </Drawer>
             </div>
         );
