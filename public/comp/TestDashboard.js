@@ -15,8 +15,6 @@ import { Button } from 'semantic-ui-react';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 
-import { html2canvas } from 'html2canvas'
-
 class TestDashboard extends Component {
     state = { 
         open: true,
@@ -25,21 +23,6 @@ class TestDashboard extends Component {
     }
 
     toggleDrawer = () => this.setState({ open: !this.state.open })
-
-    handleSaveImage = () => {
-        html2canvas($("#timeseriescontainer"), {
-            onrendered: function(canvas) {
-                theCanvas = canvas;
-                document.body.appendChild(canvas);
-
-                // Convert and download as image 
-                Canvas2Image.saveAsPNG(canvas); 
-                $("#img-out").append(canvas);
-                // Clean up 
-                //document.body.removeChild(canvas);
-            }
-        });
-    }
 
     changeData = (e) => { 
         switch (e.target.value) {
@@ -119,9 +102,6 @@ class TestDashboard extends Component {
                 <div>PSUR DATA</div><br />
                 <Button onClick={this.changeData} value='PSUR_1MONTH_BEFORE'>PSUR_1MONTH_BEFORE</Button><br/>
                 <Button onClick={this.changeData} value='PSUR_10DAYS_BEFORE'>PSUR_10DAYS_BEFORE</Button><br/>
-
-                <br/>
-                <Button onClick={this.handleSaveImage} >SAVE</Button>
 
                 {/*<Link to='/logsheet'>Log Sheet</Link>*/}
                 <Drawer 

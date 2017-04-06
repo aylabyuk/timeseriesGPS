@@ -5,7 +5,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
-import rootReducer, { client } from './reducers/index'
+import rootReducer from './reducers/index'
 import App from './App'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
@@ -14,11 +14,6 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import NotFoundPage from './comp/NotFoundPage'
 import TimeSeriesContainer from './comp/timeseries/TimeSeriesContainer'
 import TestDashboard from './comp/TestDashboard'
-import LogSheetForm from './comp/logsheet/LogSheetForm'
-
-//apollo client
-import { ApolloProvider } from 'react-apollo'
-
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore)
 const store = createStoreWithMiddleware(rootReducer,
@@ -36,15 +31,14 @@ if(module.hot) {
 }
 
 render(
-    <ApolloProvider client={client} store={store}>
+    <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={TestDashboard} />
-                <Route path="/logsheet" component={LogSheetForm} />
 
                 <Route path="*" component={NotFoundPage} />
             </Route>
         </Router>
-    </ApolloProvider >,
+    </Provider >,
     document.getElementById("app")
 )
